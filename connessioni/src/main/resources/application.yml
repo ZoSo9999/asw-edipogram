@@ -5,7 +5,7 @@ spring:
     name: connessioni
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
@@ -17,19 +17,7 @@ spring:
         # consul deve restituire solo servizi che passano l'health check (default=false) 
         queryPassing: true 
     loadbalancer: 
-      ribbon.enabled: false
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      use-new-id-generator-mappings: true
-  datasource:
-    platform: postgres
-    url: jdbc:postgresql://db_enigmi:5432/enigmi
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
+      ribbon.enabled: false 
 
 server: 
   port: ${PORT:${SERVER_PORT:0}}

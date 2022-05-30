@@ -12,4 +12,4 @@ echo Running EDIPOGRAM
 
 # java -Xms64m -Xmx128m -jar api-gateway/build/libs/api-gateway.jar &
 
-docker compose up --scale enigmi=2 --scale enigmi-seguiti=2 --scale connessioni=2
+docker compose up 

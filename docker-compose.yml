@@ -1,99 +1,29 @@
 version: '3'
-services: 
-    consul: 
-        image: consul
-    api-gateway:
-        container_name: api_gateway_service
-        build: ./api-gateway
-        ports: 
-            - "8080:8080"
-        depends_on: 
-            - "consul"
-    enigmi:
-        # container_name: enigmi_service
-        build: ./enigmi
-        depends_on:
-            - "consul"
-            - "kafka"
-            - "db_enigmi"
-    connessioni:
-        # container_name: connessioni_service
-        build: ./connessioni
-        depends_on:
-            - "consul"
-            - "kafka"
-            - "db_connessioni"
-    enigmi-seguiti:
-        # container_name: enigmi-seguiti_service
-        build: ./enigmi-seguiti
-        depends_on:
-            - "consul"
-            - "kafka"
-            - "db_enigmi-seguiti"
-    db_enigmi:
-        container_name: postgres_db_enigmi
-        image: postgres
-        volumes:
-        -   enigmi:/var/lib/postgresql/data
-        ports:
-        -   "5433:5432"
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: enigmi
-
-    db_connessioni:
-        container_name: postgres_db_connessioni
-        image: postgres
-        volumes:
-        -   connessioni:/var/lib/postgresql/data
-        ports:
-        -   "5434:5432"
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: connessioni
-
-    db_enigmi-seguiti:
-        container_name: postgres_db_enigmi-seguiti
-        image: postgres
-        volumes:
-        -   enigmi-seguiti:/var/lib/postgresql/data
-        ports:
-        -   "5435:5432"
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: enigmi-seguiti
-
-    zookeeper:
-        image: wurstmeister/zookeeper
-        environment:
-            ZOOKEEPER_CLIENT_PORT: 2181
-        ports:
-        -   "2181:2181"
-
-    kafka:
-        container_name: kafka
-        image: wurstmeister/kafka:latest
-        depends_on:
-            -   "zookeeper"
-        restart: always
-        ports:
-        -   "9092:9092"
-        environment:
-            # KAFKA_LISTENERS: PLAINTEXT://:9092
-            # KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
-            KAFKA_ADVERTISED_HOST_NAME: kafka
-            KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-            KAFKA_CREATE_TOPICS: "enigmi-event-channel:2:1, connessioni-event-channel:2:1"
-        volumes:
-        -   /var/run/docker.sock:/var/run/docker.sock
-
+services:
+  consul:
+    image: consul
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "consul"
+  enigmi:
+    build: ./enigmi
+    depends_on:
+      - "consul"
+  connessioni:
+    build: ./connessioni
+    depends_on:
+      - "consul"
+  enigmi-seguiti:
+    build: ./enigmi-seguiti
+    depends_on:
+      - "consul"
 volumes:
-    enigmi:
-        external: true
-    connessioni:
-        external: true
-    enigmi-seguiti:
-        external: true
+  enigmi:
+    external: true
+  connessioni:
+    external: true
+  enigmi-seguiti:
+    external: true
