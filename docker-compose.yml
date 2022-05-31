@@ -3,23 +3,49 @@ services:
   consul:
     image: consul
   api-gateway:
+    container_name: api_gateway_service
     build: ./api-gateway
     ports:
       - "8080:8080"
     depends_on:
       - "consul"
   enigmi:
+    container_name: enigmi_service
     build: ./enigmi
     depends_on:
       - "consul"
   connessioni:
+    container_name: connessioni_service
     build: ./connessioni
     depends_on:
       - "consul"
   enigmi-seguiti:
+    container_name: enigmi-seguiti_service
     build: ./enigmi-seguiti
     depends_on:
       - "consul"
+  db_enigmi: 
+    container_name: postgres_db_enigmi 
+    image: postgres 
+    volumes: 
+    -   enigmi:/var/lib/postgresql/data 
+    ports: 
+    -   "5433:5432" 
+    environment: 
+        POSTGRES_USER: postgres 
+        POSTGRES_PASSWORD: postgres 
+        POSTGRES_DB: enigmi
+  db_connessioni: 
+    container_name: postgres_db_connessioni
+    image: postgres 
+    volumes: 
+    -   connessioni:/var/lib/postgresql/data 
+    ports: 
+    -   "5434:5432" 
+    environment: 
+        POSTGRES_USER: postgres 
+        POSTGRES_PASSWORD: postgres 
+        POSTGRES_DB: connessioni
 volumes:
   enigmi:
     external: true
