@@ -8,8 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+// @AllArgsConstructor
+// @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class EnigmaCreatedEvent implements DomainEvent {
 
@@ -17,6 +17,19 @@ public class EnigmaCreatedEvent implements DomainEvent {
     Long Id;
     String autore;
     String tipo;
+    String tipoSpecifico;
     String titolo;
     String[] testo;
+
+    public EnigmaCreatedEvent(){}
+    public EnigmaCreatedEvent(Long Id, String autore, String tipo, String tipoSpecifico, String titolo, String[] testo){
+        this();
+        this.Id=Id;
+        this.autore = autore;
+        this.tipo = tipo;
+        this.tipoSpecifico = tipoSpecifico;
+        this.titolo = titolo;
+        this.testo = testo;
+    }
 }
+

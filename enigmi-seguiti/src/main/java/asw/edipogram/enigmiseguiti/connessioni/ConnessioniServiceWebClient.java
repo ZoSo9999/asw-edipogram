@@ -21,6 +21,10 @@ public class ConnessioniServiceWebClient implements ConnessioniService {
 	@Autowired 
 	@Qualifier("loadBalancedWebClient")
     private WebClient loadBalancedWebClient;
+
+    @Autowired
+    private ConnessioneRepository connessioneRepository;
+
 	
 	public Collection<Connessione> getConnessioniByUtente(String utente) {
 		Collection<Connessione> connessioni = null; 
@@ -37,4 +41,7 @@ public class ConnessioniServiceWebClient implements ConnessioniService {
 		return connessioni; 
 	}	
 
+    public Collection<Connessione> getConnessioniByTipo(String tipo){
+	    return this.connessioneRepository.findByTipo(tipo);
+    }
 }

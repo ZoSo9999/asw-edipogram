@@ -25,6 +25,7 @@ services:
     build: ./enigmi-seguiti
     depends_on:
       - "consul"
+      - "kafka"
   db_enigmi: 
     container_name: postgres_db_enigmi 
     image: postgres 
@@ -47,6 +48,17 @@ services:
         POSTGRES_USER: postgres 
         POSTGRES_PASSWORD: postgres 
         POSTGRES_DB: connessioni
+  db_enigmi-seguiti:
+    container_name: postgres_db_enigmi-seguiti
+    image: postgres
+    volumes:
+    -   enigmi-seguiti:/var/lib/postgresql/data
+    ports:
+    -   "5435:5432"
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: enigmi-seguiti
   zookeeper:
     image: bitnami/zookeeper:latest
     ports:

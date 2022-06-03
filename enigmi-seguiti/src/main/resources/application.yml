@@ -18,7 +18,18 @@ spring:
         queryPassing: true 
     loadbalancer: 
       ribbon.enabled: false 
-
+  jpa: 
+    database: POSTGRESQL 
+    show-sql: true 
+    hibernate: 
+      ddl-auto: update 
+      use-new-id-generator-mappings: true 
+  datasource: 
+    platform: postgres 
+    url: jdbc:postgresql://db_enigmi-seguiti:5432/enigmi-seguiti
+    username: postgres 
+    password: postgres 
+    driver-class-name: org.postgresql.Driver
 server: 
   port: ${PORT:${SERVER_PORT:0}}
 #  port: 8080

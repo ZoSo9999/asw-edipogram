@@ -1,6 +1,7 @@
 package asw.edipogram.enigmiseguiti.rest;
 
 import asw.edipogram.enigmiseguiti.domain.*; 
+import asw.edipogram.enigmiseguiti.enigmi.Enigma;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
