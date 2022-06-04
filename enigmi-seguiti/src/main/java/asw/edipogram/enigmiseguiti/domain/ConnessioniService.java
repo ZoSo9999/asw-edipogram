@@ -9,5 +9,7 @@ public interface ConnessioniService {
 	public Collection<Connessione> getConnessioniByUtente(String utente); 
 
 	public Collection<Connessione> getConnessioniByTipo(String tipo);
+
+	public Connessione addConnessione(Long Id, String utente, String tipo);
 	
 }

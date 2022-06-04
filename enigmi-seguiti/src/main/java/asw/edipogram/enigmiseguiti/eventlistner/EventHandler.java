@@ -1,10 +1,10 @@
 package asw.edipogram.enigmiseguiti.eventlistner;
 
 import asw.edipogram.api_event.common.DomainEvent;
-// import asw.edipogram.api_event.connessioni.ConnessioneConTipoCreatedEvent;
+import asw.edipogram.api_event.connessioni.ConnessioneCreatedEvent;
 import asw.edipogram.api_event.enigmi.EnigmaCreatedEvent;
-// import asw.edipogram.enigmiseguiti.connessioni.ConnessioneConTipo;
-// import asw.edipogram.enigmiseguiti.connessioni.ConnessioniService;
+import asw.edipogram.enigmiseguiti.connessioni.Connessione;
+import asw.edipogram.enigmiseguiti.domain.ConnessioniService;
 import asw.edipogram.enigmiseguiti.domain.EnigmiSeguitiService;
 import asw.edipogram.enigmiseguiti.enigmi.Enigma;
 import asw.edipogram.enigmiseguiti.enigmi.EnigmiServiceWebClient;
@@ -17,8 +17,9 @@ public class EventHandler implements IEventHandler {
 
     private final Logger logger = Logger.getLogger(EventHandler.class.toString());
 
-    // @Autowired
-    // private ConnessioniService connessioniService;
+    @Autowired
+    private ConnessioniService connessioniService;
+
     @Autowired
     private EnigmiService enigmiService;
     
@@ -36,10 +37,10 @@ public class EventHandler implements IEventHandler {
             Enigma enigma = this.enigmiService.addEnigma(enigmaEvent.getId(), enigmaEvent.getAutore(), enigmaEvent.getTipo(), enigmaEvent.getTipoSpecifico(), enigmaEvent.getTitolo(), enigmaEvent.getTesto());
             this.enigmiSeguitiService.onEnigmaAdded(enigma);
 
-        // }else if(event.getClass() == ConnessioneConTipoCreatedEvent.class){
-        //     ConnessioneConTipoCreatedEvent connEvent = (ConnessioneConTipoCreatedEvent) event;
-        //     ConnessioneConTipo conn = this.connessioniService.createConnessioneConTipo(connEvent.getId(), connEvent.getUtente(), connEvent.getTipo());
-        //     this.enigmiSeguitiService.onConnessioneConTipoAdded(conn);
+        }else if(event.getClass() == ConnessioneCreatedEvent.class){
+            ConnessioneCreatedEvent connEvent = (ConnessioneCreatedEvent) event;
+            Connessione connessione = this.connessioniService.addConnessione(connEvent.getId(), connEvent.getUtente(), connEvent.getTipo());
+            this.enigmiSeguitiService.onConnessioneAdded(connessione);
 
         }else{
             logger.info("UNKNOWN EVENT: " + event);

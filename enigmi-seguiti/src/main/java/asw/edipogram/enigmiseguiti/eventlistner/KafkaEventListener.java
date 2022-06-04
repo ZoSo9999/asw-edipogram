@@ -15,9 +15,9 @@ public class KafkaEventListener{
     
     //@KafkaListeners(value = {@KafkaListener(topics = "$(asw.edipogram.kafka.channel.events.enigmi)",
     @KafkaListeners(value = {@KafkaListener(topics = "enigmi-event-channel",
-                                            groupId = "enigmi-event-consumer")
-                            //  ,@KafkaListener(topics = "connessioni-event-channel",
-                            //                 groupId = "connessioni-event-consumer")
+                                            groupId = "enigmi-event-consumer"),
+                             @KafkaListener(topics = "connessioni-event-channel",
+                                            groupId = "connessioni-event-consumer")
                         })
     public void onEventRaised(ConsumerRecord<String, DomainEvent> record) {
         DomainEvent event = record.value();

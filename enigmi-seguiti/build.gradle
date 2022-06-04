@@ -21,7 +21,7 @@ dependencies {
 //	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
 //	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 	implementation project(":enigmi-api-event")
-    //implementation project(":connessioni-api-event")
+    implementation project(":connessioni-api-event")
     implementation project(":common-api-event")
 	
 	

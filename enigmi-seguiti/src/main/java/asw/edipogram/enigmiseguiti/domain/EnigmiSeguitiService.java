@@ -54,4 +54,16 @@ public class EnigmiSeguitiService {
 		this.enigmiSeguitiRepository.saveAll(newSeguitiSet);
 	}
 
+	public void onConnessioneAdded(Connessione connessione){
+		Collection<EnigmaSeguito> newSeguitiSet = new TreeSet<>();
+
+		Collection<Enigma> enigmi = this.enigmiService.getEnigmiByTipo(connessione.getTipo());
+		for (Enigma e : enigmi){
+			EnigmaSeguito es = new EnigmaSeguito(connessione.getUtente(), e);
+			newSeguitiSet.add(es);
+		}
+		
+		this.enigmiSeguitiRepository.saveAll(newSeguitiSet);
+	}
+
 }

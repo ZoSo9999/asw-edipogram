@@ -8,5 +8,5 @@ public interface EnigmaRepository extends CrudRepository<Enigma, Long>{
     
     Collection<Enigma> findByAutore(String autore);
 
-    Collection<Enigma> findByTipoStartingWith(String tipo);
+    Collection<Enigma> findByTipo(String tipo);
 }

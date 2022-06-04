@@ -18,7 +18,7 @@ import javax.persistence.IdClass;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @IdClass(EnigmaSeguitoId.class)
-public class EnigmaSeguito {
+public class EnigmaSeguito implements Comparable<EnigmaSeguito>{
 
     @Id
     @EqualsAndHashCode.Include
@@ -35,4 +35,10 @@ public class EnigmaSeguito {
     public EnigmaSeguito(String utente, Enigma enigma){
         this(utente, enigma.getId(), enigma.getAutore(), enigma.getTipo(), enigma.getTipoSpecifico(), enigma.getTitolo(), enigma.getTesto());
     }
+    
+    @Override
+	public int compareTo(EnigmaSeguito other) {
+		return this.IdEnigma.compareTo(other.IdEnigma); 
+	}
+	
 }

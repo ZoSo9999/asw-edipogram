@@ -48,7 +48,7 @@ public class EnigmiServiceWebClient implements EnigmiService {
 	}
 
 	public Collection<Enigma> getEnigmiByTipo(String tipo) {
-		Collection<Enigma> enigmi = enigmiRepository.findByTipoStartingWith(tipo);
+		Collection<Enigma> enigmi = enigmiRepository.findByTipo(tipo);
 		return enigmi;
 	}
 

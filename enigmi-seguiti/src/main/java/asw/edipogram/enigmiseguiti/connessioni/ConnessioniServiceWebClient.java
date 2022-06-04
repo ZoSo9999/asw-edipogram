@@ -44,4 +44,10 @@ public class ConnessioniServiceWebClient implements ConnessioniService {
     public Collection<Connessione> getConnessioniByTipo(String tipo){
 	    return this.connessioneRepository.findByTipo(tipo);
     }
+
+    public Connessione addConnessione(Long Id, String utente, String tipo){
+        Connessione connessione = new Connessione(Id, utente, tipo);
+		connessione = connessioneRepository.save(connessione);
+		return connessione;
+    }
 }
