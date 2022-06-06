@@ -32,26 +32,21 @@ public class EnigmiSeguitiService {
 	}
 
 	public void onEnigmaAdded(Enigma enigma) {
-		Collection<EnigmaSeguito> newSeguitiSet = new TreeSet<>();
 		
 		Collection<Connessione> connessioni = this.connessioniService.getConnessioniByTipo(enigma.getTipo());
 		for(Connessione c : connessioni){
 			EnigmaSeguito e = new EnigmaSeguito(c.getUtente(), enigma);
-			newSeguitiSet.add(e);
+			this.enigmiSeguitiRepository.save(e);
 		}
-		this.enigmiSeguitiRepository.saveAll(newSeguitiSet);
 	}
 
 	public void onConnessioneAdded(Connessione connessione){
-		Collection<EnigmaSeguito> newSeguitiSet = new TreeSet<>();
 
 		Collection<Enigma> enigmi = this.enigmiService.getEnigmiByTipo(connessione.getTipo());
 		for (Enigma e : enigmi){
 			EnigmaSeguito es = new EnigmaSeguito(connessione.getUtente(), e);
-			newSeguitiSet.add(es);
+			this.enigmiSeguitiRepository.save(es);
 		}
-		
-		this.enigmiSeguitiRepository.saveAll(newSeguitiSet);
 	}
 
 }
