@@ -26,20 +26,12 @@ echo "# tutti gli enigmi di tipo Cambio"
 echo $(curl -s localhost:8080/enigmi/cercaenigmi/tipo/Cambio)
 echo 
 
-echo "# tutte le connessioni con autori" 
-echo $(curl -s localhost:8080/connessioni/connessioniconautori)
+echo "# tutte le connessioni" 
+echo $(curl -s localhost:8080/connessioni/connessioni)
 echo 
 
-echo "# tutte le connessioni con autori di Alice" 
-echo $(curl -s localhost:8080/connessioni/connessioniconautori/Alice)
-echo 
-
-echo "# tutte le connessioni con tipi" 
-echo $(curl -s localhost:8080/connessioni/connessionicontipi)
-echo 
-
-echo "# tutte le connessioni con tipi di Alice" 
-echo $(curl -s localhost:8080/connessioni/connessionicontipi/Alice)
+echo "# tutte le connessioni di Alice" 
+echo $(curl -s localhost:8080/connessioni/connessioni/Alice)
 echo 
 
 echo "# gli enigmi seguiti da Alice" 
