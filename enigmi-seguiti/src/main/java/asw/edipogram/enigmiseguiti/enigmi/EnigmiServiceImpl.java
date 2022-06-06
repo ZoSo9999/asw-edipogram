@@ -17,7 +17,7 @@ import java.util.stream.*;
 
 @Service 
 @Primary 
-public class EnigmiServiceWebClient implements EnigmiService {
+public class EnigmiServiceImpl implements EnigmiService {
 
 
 	@Autowired

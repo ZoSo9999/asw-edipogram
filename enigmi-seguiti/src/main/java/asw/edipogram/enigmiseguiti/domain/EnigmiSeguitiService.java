@@ -3,7 +3,6 @@ package asw.edipogram.enigmiseguiti.domain;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import asw.edipogram.enigmiseguiti.enigmi.Enigma;
-import asw.edipogram.enigmiseguiti.enigmi.EnigmiServiceWebClient;
 import asw.edipogram.enigmiseguiti.connessioni.Connessione;
 
 import java.util.*; 

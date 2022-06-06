@@ -7,7 +7,6 @@ import asw.edipogram.enigmiseguiti.connessioni.Connessione;
 import asw.edipogram.enigmiseguiti.domain.ConnessioniService;
 import asw.edipogram.enigmiseguiti.domain.EnigmiSeguitiService;
 import asw.edipogram.enigmiseguiti.enigmi.Enigma;
-import asw.edipogram.enigmiseguiti.enigmi.EnigmiServiceWebClient;
 import asw.edipogram.enigmiseguiti.domain.EnigmiService;
 import org.springframework.beans.factory.annotation.Autowired;
 

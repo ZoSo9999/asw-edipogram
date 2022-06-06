@@ -57,6 +57,8 @@ L'applicazione *Edipogram* è composta dai seguenti microservizi:
 
 Per eseguire questo progetto: 
 
+* creare le immagini Docker tramite lo script `create-image-edipogram.sh`
+
 * avviare *Consul* eseguendo lo script `start-consul.sh` 
 
 * per avviare l'applicazione *Edipogram*, eseguire lo script `run-edipogram.sh` 
@@ -90,11 +92,11 @@ Ed inoltre:
 
 * lo script `do-post-altre-connessioni.sh` aggiunge nuove connessioni 
 
-Alla fine, l'applicazione può essere arrestata usando lo script `kill-java-processes.sh` (**da usare con cautela!**). 
+Alla fine, l'applicazione può essere arrestata usando lo script `stop-edipogram.sh` (**da usare con cautela!**). 
 
 Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
 
-
+Per rimuovere definitivamente le immgini usare lo script `remove-image-edipogram.sh`
 ## Descrizione delle attività da svolgere 
 
 Si veda la descrizione del progetto sul sito web del corso di [Architettura dei sistemi software](http://cabibbo.dia.uniroma3.it/asw/).

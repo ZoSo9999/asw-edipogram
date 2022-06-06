@@ -1,8 +1,8 @@
-echo "Removing docker images"
+echo "Rimozione delle immagini Docker"
 docker compose down -v && docker compose rm && docker image rm $(docker image ls | grep 'edipogram' | awk '{print $3}')
 docker volume rm enigmi
 docker volume rm connessioni
 docker volume rm enigmi-seguiti
-echo "Images removed succesfully"
-echo "What's stil up:"
+echo "Immagini rimosse con successo"
+echo "Immagini rimaste:"
 docker images

@@ -16,7 +16,7 @@ import java.util.*;
 
 @Service 
 @Primary 
-public class ConnessioniServiceWebClient implements ConnessioniService {
+public class ConnessioniServiceImpl implements ConnessioniService {
 
     @Autowired
     private ConnessioneRepository connessioneRepository;
