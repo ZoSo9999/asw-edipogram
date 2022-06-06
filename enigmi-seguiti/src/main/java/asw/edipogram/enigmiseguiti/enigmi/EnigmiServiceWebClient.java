@@ -19,27 +19,10 @@ import java.util.stream.*;
 @Primary 
 public class EnigmiServiceWebClient implements EnigmiService {
 
-	@Autowired 
-	@Qualifier("loadBalancedWebClient")
-    private WebClient loadBalancedWebClient;
 
 	@Autowired
 	private EnigmaRepository enigmiRepository;
 	
-	public Collection<Enigma> getEnigmiByTipi(Collection<String> tipi) {
-		Collection<Enigma> enigmi = null; 
-        Flux<Enigma> response = loadBalancedWebClient
-                .get()
-				.uri("http://enigmi/cercaenigmi/tipi/{tipi}", toString(tipi))
-                .retrieve()
-                .bodyToFlux(Enigma.class);
-        try {
-            enigmi = response.collectList().block();
-        } catch (WebClientException e) {
-            e.printStackTrace();
-        }
-		return enigmi; 
-	}	
 
 	public Enigma addEnigma(Long Id, String autore, String tipo, String tipoSpecifico, String titolo, String[] testo) {
 		Enigma enigma = new Enigma(Id, autore, tipo, tipoSpecifico, titolo, testo);

@@ -29,11 +29,6 @@ public class ConnessioniService {
 		return connessione;
 	}
 
- 	public Connessione getConnessione(Long id) {
-		Connessione connessione = connessioniRepository.findById(id).orElse(null);
-		return connessione;
-	}
-
  	public Collection<Connessione> getConnessioni() {
 		Collection<Connessione> connessioni = connessioniRepository.findAll();
 		return connessioni;

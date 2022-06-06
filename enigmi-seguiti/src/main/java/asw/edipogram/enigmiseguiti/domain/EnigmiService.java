@@ -5,8 +5,6 @@ import java.util.*;
 
 public interface EnigmiService {
 
-	public Collection<Enigma> getEnigmiByTipi(Collection<String> tipi); 
-
 	public Enigma addEnigma(Long Id, String autore, String tipo, String tipoSpecifico, String titolo, String[] testo);
 
 	public Collection<Enigma> getEnigmiByTipo(String tipo);

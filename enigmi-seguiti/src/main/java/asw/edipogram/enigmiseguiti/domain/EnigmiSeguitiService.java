@@ -29,17 +29,6 @@ public class EnigmiSeguitiService {
 			Enigma enigma = new Enigma(e.getIdEnigma(),e.getAutoreEnigma(),e.getTipoEnigma(),e.getTipoSpecificoEnigma(),e.getTitoloEnigma(),e.getTestoEnigma());
 			enigmi.add(enigma);
 		}
-		// Collection<Enigma> enigmiSeguiti = new TreeSet<>(); 
-		// Collection<Connessione> connessioni = connessioniService.getConnessioniByUtente(utente); 
-		// Collection<String> tipiSeguiti = 
-		// 	connessioni
-		// 		.stream()
-		// 		.map(c -> c.getTipo())
-		// 		.collect(Collectors.toSet()); 
-		// if (tipiSeguiti.size()>0) {
-		// 	Collection<Enigma> enigmi = enigmiService.getEnigmiByTipi(tipiSeguiti);
-		// 	enigmiSeguiti.addAll(enigmi); 
-		// }
 		return enigmi; 
 	}
 

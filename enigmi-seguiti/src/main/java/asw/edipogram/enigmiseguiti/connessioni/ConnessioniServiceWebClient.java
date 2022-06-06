@@ -18,28 +18,8 @@ import java.util.*;
 @Primary 
 public class ConnessioniServiceWebClient implements ConnessioniService {
 
-	@Autowired 
-	@Qualifier("loadBalancedWebClient")
-    private WebClient loadBalancedWebClient;
-
     @Autowired
     private ConnessioneRepository connessioneRepository;
-
-	
-	public Collection<Connessione> getConnessioniByUtente(String utente) {
-		Collection<Connessione> connessioni = null; 
-        Flux<Connessione> response = loadBalancedWebClient
-                .get()
-				.uri("http://connessioni/connessioni/{utente}", utente)
-                .retrieve()
-                .bodyToFlux(Connessione.class);
-        try {
-            connessioni = response.collectList().block();
-        } catch (WebClientException e) {
-            e.printStackTrace();
-        }
-		return connessioni; 
-	}	
 
     public Collection<Connessione> getConnessioniByTipo(String tipo){
 	    return this.connessioneRepository.findByTipo(tipo);

@@ -7,25 +7,15 @@ services:
     build: ./api-gateway
     ports:
       - "8080:8080"
-    depends_on:
-      - "consul"
   enigmi:
     container_name: enigmi_service
     build: ./enigmi
-    depends_on:
-      - "consul"
-      - "kafka"
   connessioni:
     container_name: connessioni_service
     build: ./connessioni
-    depends_on:
-      - "consul"
   enigmi-seguiti:
     container_name: enigmi-seguiti_service
     build: ./enigmi-seguiti
-    depends_on:
-      - "consul"
-      - "kafka"
   db_enigmi: 
     container_name: postgres_db_enigmi 
     image: postgres 
@@ -72,14 +62,9 @@ services:
     ports:
       - "9092:9092"
     environment:
-#       - KAFKA_BROKER_ID=1
       - ALLOW_PLAINTEXT_LISTENER=yes
-#       - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-#       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
-#       - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://10.11.121:9092
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_ADVERTISED_HOST_NAME=kafka
-#      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CREATE_TOPICS="enigmi-event-channel:2:1, connessioni-event-channel:2:1"
     volumes:
       -   /var/run/docker.sock:/var/run/docker.sock
