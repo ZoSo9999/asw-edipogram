@@ -52,6 +52,18 @@ L'applicazione *Edipogram* è composta dai seguenti microservizi:
   * espone il servizio *connessioni* sul path `/connessioni` - ad esempio, `GET /connessioni/connessioni/{utente}`
   * espone il servizio *enigmi-seguiti* sul path `/enigmi-seguiti` - ad esempio, `GET /enigmi-seguiti/enigmiseguiti/{utente}`
 
+## Miglioramenti del sistema apportati
+
+Nei servizi enigmi e connessioni è stata usata una base di dati PostgreSQL al posto di HSQLDB (ciascuna eseguita in un container Docker separato).  
+È stata modificata la logica del servizio enigmi‐seguiti, come descritto nel seguito:
+* quando viene aggiunto un nuovo enigma, il servizio enigmi notifica un evento EnigmaCreatedEvent (con tutti i dati dell’enigma, ad eccezione della soluzione), su un canale Kafka (eseguito in un container Docker).   
+* quando viene aggiunta una nuova connessione utente‐tipo, il servizio delle connessioni notifica un evento ConnessioneCreatedEvent, su un canale Kafka.
+* il servizio enigmi‐seguiti gestisce una propria base di dati (separata dalle precedenti, in un container Docker separato), con una tabella per gli enigmi, una per le connessioni utente‐tipo, ed anche una tabella enigmiseguiti che memorizza righe (utente, idEnigma, autoreEnigma, tipoEnigma, tipoSpecificoEnigma, titoloEnigma, testoEnigma).   
+* ogni volta che il servizio enigmi‐seguiti riceve un evento EnigmaCreatedEvent, aggiorna di conseguenza la propria tabella degli enigmi e anche la tabella enigmiseguiti.   
+* ogni volta che il servizio enigmi‐seguiti riceve un evento ConnessioneCreatedEvent, aggiorna di conseguenza la relativa tabella delle connessioni e anche la tabella
+enigmiseguiti.   
+* il servizio enigmi‐seguiti può poi rispondere alle richieste GET /enigmiseguiti/{utente} accedendo solo alla propria tabella enigmiseguiti.
+
 
 ## Esecuzione 
 
